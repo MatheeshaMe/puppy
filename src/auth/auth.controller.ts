@@ -13,6 +13,8 @@ import { AuthService } from './auth.service';
 import { RegisterDTO, LoginDTO } from '../../dist/auth/auth.dto';
 import { Payload } from './payload';
 import { AdminGuard } from '../guards/admin.guard';
+import { UserDec } from 'src/utilities/user.decorator';
+import { User } from 'src/user/schema/user.schema';
 
 @Controller('auth')
 export class AuthController {
@@ -52,7 +54,8 @@ export class AuthController {
 
   @Get()
   @UseGuards(AuthGuard('jwt'), AdminGuard)
-  check() {
+  check(@UserDec() user: User) {
+    console.log(user);
     return 'working';
   }
 }
