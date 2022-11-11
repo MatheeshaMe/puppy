@@ -18,4 +18,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   @IsNotEmpty()
   @IsString()
   accounts: string;
+
+  @IsBoolean()
+  isAdmin:boolean
 }
