@@ -84,7 +84,9 @@ export class UserService {
         photo,
         accounts,
       };
-      const newUser = await this.userModel.findOneAndUpdate(filter, update);
+      const newUser = await this.userModel.find(filter, update, {
+        returnNewDocument: true,
+      });
       return newUser;
     } catch (error) {
       console.log(error);
