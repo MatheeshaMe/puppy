@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreatePuppyDto } from './dto/create-puppy.dto';
 import { UpdatePuppyDto } from './dto/update-puppy.dto';
 import { PuppuDocument, Puppy } from './schema/puppy.schema';
-import { SchemaNames } from './schema/SchemaNames';
+import { SchemaNames } from '../config/SchemaNames';
 
 @Injectable()
 export class PuppyService {
