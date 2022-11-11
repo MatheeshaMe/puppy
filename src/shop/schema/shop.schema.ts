@@ -1,13 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaType, SchemaTypes, Types } from 'mongoose';
 import { ProductType } from '../dto/create-shop.dto';
-
+import { User, UserSchema } from 'src/user/schema/user.schema';
+import { Type } from 'class-transformer';
 export type ShopDocument = HydratedDocument<Shop>;
 
-@Schema()
+@Schema({ timestamps: true })
 export class Shop {
   @Prop({ type: SchemaTypes.ObjectId, ref: 'User', required: true })
-  seller: Types.ObjectId;
+  owner: Types.ObjectId;
 
   @Prop()
   productname: string;
