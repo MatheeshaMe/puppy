@@ -4,11 +4,15 @@ import {
   Post,
   HttpException,
   HttpStatus,
+  Get,
+  UseGuards,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
 import { RegisterDTO, LoginDTO } from '../../dist/auth/auth.dto';
 import { Payload } from './payload';
+import { AdminGuard } from '../guards/admin.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -21,7 +25,7 @@ export class AuthController {
   async register(@Body() registerDTO: RegisterDTO) {
     const user = await this.userService.register(registerDTO);
 
-    const payload = {
+    const payload: Payload = {
       name: user.name,
       isAdmin: user.isAdmin,
     };
@@ -36,7 +40,7 @@ export class AuthController {
     if (!user) {
       throw new HttpException('credentials invalid', HttpStatus.NOT_FOUND);
     }
-    const payload = {
+    const payload: Payload = {
       name: user.name,
       isAdmin: user.isAdmin,
     };
@@ -44,5 +48,11 @@ export class AuthController {
     const token = await this.authService.signPayload(payload);
 
     return { user, token };
+  }
+
+  @Get()
+  @UseGuards(AuthGuard('jwt'), AdminGuard)
+  check() {
+    return 'working';
   }
 }
