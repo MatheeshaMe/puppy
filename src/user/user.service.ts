@@ -68,4 +68,39 @@ export class UserService {
     const { name } = payload;
     return await this.userModel.findOne({ name });
   }
+
+  async updateUser(updateUserDTO: UpdateUserDto): Promise<User | any> {
+    try {
+      const { name, address, photo, accounts } = updateUserDTO;
+      const user = await this.userModel.findOne({ name });
+      if (!user) {
+        throw new HttpException('user not found', HttpStatus.NOT_FOUND);
+      }
+
+      const filter = { name: name };
+      const update = {
+        name,
+        address,
+        photo,
+        accounts,
+      };
+      const newUser = await this.userModel.findOneAndUpdate(filter, update);
+      return newUser;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async deleteUser(id: string) {
+    try {
+      const isUserAvailable = await this.userModel.findById(id);
+      if (!isUserAvailable) {
+        throw new HttpException('user not found', HttpStatus.NOT_FOUND);
+      }
+      await this.userModel.findByIdAndDelete(id);
+      return 'user has been deleted';
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
