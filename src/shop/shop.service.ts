@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ShopDocument, Shop } from './schema/shop.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { User } from '../user/schema/user.schema';
 
 @Injectable()
 export class ShopService {
@@ -10,10 +11,19 @@ export class ShopService {
     @InjectModel('Shop') private prodcutSchema: Model<ShopDocument>,
   ) {}
 
-  async createProduct(productDTO: CreateShopDTO): Promise<Shop> {
+  async createProduct(productDTO: CreateShopDTO, user: User): Promise<Shop> {
     try {
-      const newProduct = await new this.prodcutSchema(productDTO);
-      return newProduct;
+      const { productname, productPrice, productphoto, producttype } =
+        productDTO;
+      const { _id } = user;
+      const newProduct = await new this.prodcutSchema({
+        owner: _id,
+        productname,
+        productPrice,
+        productphoto,
+        producttype,
+      });
+      return newProduct.save();
     } catch (error) {
       console.log(error);
     }
