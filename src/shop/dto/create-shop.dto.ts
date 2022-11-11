@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { User } from 'src/user/schema/user.schema';
 
 export interface ProductType {
   shampoo?: string;
@@ -7,7 +8,7 @@ export interface ProductType {
 }
 
 export class CreateShopDTO {
-  owner: any;
+  owner: User;
 
   @IsNotEmpty()
   @IsString()
