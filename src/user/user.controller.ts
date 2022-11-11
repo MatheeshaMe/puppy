@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -25,4 +26,9 @@ export class UserController {
   // login(@Body() loginUserDTO: LoginUserDTO) {
   //   return this.userService.findByLogin(loginUserDTO);
   // }
+
+  @Put(":name")
+  updateUser(@Body() updateUserDTO:UpdateUserDto){
+    return this.userService.updateUser(updateUserDTO)
+  }
 }
