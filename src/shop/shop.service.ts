@@ -1,9 +1,13 @@
 import { CreateShopDTO } from './dto/create-shop.dto';
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { ShopDocument, Shop } from './schema/shop.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../user/schema/user.schema';
+
+// export type ProductType = "Shampoo" | "Toy" | "Vitamin"
+
+const array: string[] = ['Shampoo', 'Toy', 'Vitamin'];
 
 @Injectable()
 export class ShopService {
@@ -11,11 +15,23 @@ export class ShopService {
     @InjectModel('Shop') private prodcutSchema: Model<ShopDocument>,
   ) {}
 
-  async createProduct(productDTO: CreateShopDTO, user: User): Promise<Shop> {
+  async createProduct(
+    productDTO: CreateShopDTO,
+    user: User,
+  ): Promise<Shop | HttpException> {
     try {
       const { productname, productPrice, productphoto, producttype } =
         productDTO;
       const { _id } = user;
+      // console.log(producttype);
+
+      if (!array.includes(producttype)) {
+        return new HttpException(
+          'Product type not available yet',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      console.log('going');
       const newProduct = await new this.prodcutSchema({
         owner: _id,
         productname,
