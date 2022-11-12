@@ -19,8 +19,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seed": "ts-node src/shop/seed.ts",
-    "seed:refresh": "ts-node src/shop/seed.ts --refresh"
+    "seed:shop": "ts-node src/shop/seed.ts",
+    "seed:shop:refresh": "ts-node src/shop/seed.ts --refresh",
+    "seed:review": "ts-node src/review/seed.ts",
+    "seed:review:refresh": "ts-node src/review/seed.ts --refresh"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
