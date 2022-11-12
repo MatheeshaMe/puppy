@@ -1,14 +1,14 @@
 import {
-    Controller,
-    Post,
-    Get,
-    Put,
-    Delete,
-    Body,
-    UseGuards,
-    Param,
-  } from '@nestjs/common';
-  import { AuthGuard } from '@nestjs/passport';
+  Controller,
+  Post,
+  Get,
+  Put,
+  Delete,
+  Body,
+  UseGuards,
+  Param,
+} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 
 import { BlogService } from './blog.service';
 import { CreateBlogDTO, UpdateBlogDTO } from './dto/blog.dto';
@@ -18,14 +18,52 @@ import { AdminGuard } from '../guards/admin.guard';
 
 @Controller('blog')
 export class BlogController {
-    constructor(private readonly blogService:BlogService){}
-    
-    @Post()
-    @UseGuards(AuthGuard("jwt"),AdminGuard)
-    async createBlog(@Body() createBlogDTO: CreateBlogDTO, @UserDec() user: User) {
+  constructor(private readonly blogService: BlogService) {}
+
+  @Post()
+  @UseGuards(AuthGuard('jwt'), AdminGuard)
+  async createBlog(
+    @Body() createBlogDTO: CreateBlogDTO,
+    @UserDec() user: User,
+  ) {
+    try {
+      return await this.blogService.createBlog(createBlogDTO, user);
+    } catch (error) {
+      return error;
     }
-    async getBlogById(id: string) {}
-    async getBlogs() {}
-    async updateBlog(updateBlogDTO: UpdateBlogDTO, id: string, user: User) {}
-    async deletBlog(id: string, user: User) {}
+  }
+
+  @Get(':id')
+  async getBlogById(@Param('id') id: string) {
+    try {
+      return await this.blogService.getBlogById(id);
+    } catch (error) {
+      return error;
+    }
+  }
+
+  @Get()
+  async getBlogs() {
+    try {
+      return await this.blogService.getBlogs();
+    } catch (error) {
+      return error;
+    }
+  }
+
+  @Put(':id')
+  @UseGuards(AuthGuard('jwt'), AdminGuard)
+  async updateBlog(
+    @Body() updateBlogDTO: UpdateBlogDTO,
+    @Param('id') id: string,
+    @UserDec() user: User,
+  ) {
+    return await this.blogService.updateBlog(updateBlogDTO, id, user);
+  }
+
+  @Delete(":id")
+  @UseGuards(AuthGuard('jwt'), AdminGuard)
+  async deletBlog(@Param("id") id: string,@UserDec() user: User) {
+    return await this.blogService.deletBlog(id,user)
+  }
 }
