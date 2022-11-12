@@ -19,6 +19,14 @@ export class UserService {
       const { name, address, photo, accounts, password, isAdmin } =
         createUserDto;
 
+      const user = await this.userModel.findOne({ name: name });
+      if (user) {
+        
+        throw new HttpException(
+          'user already exist',
+          HttpStatus.NOT_ACCEPTABLE,
+        );
+      }
       const hashedPassword = await bcrypt.hash(password, 10);
       console.log(hashedPassword);
       const newUser = new this.userModel({
@@ -33,7 +41,7 @@ export class UserService {
       const usr = await newUser.save();
       return usr;
     } catch (error) {
-      return error && `there is an error`;
+      throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
   }
   async login(
@@ -48,7 +56,7 @@ export class UserService {
       // .select('name address photo accounts password ');
 
       if (!user) {
-        return new HttpException('Not user found', HttpStatus.UNAUTHORIZED);
+        throw new HttpException('Not user found', HttpStatus.UNAUTHORIZED);
       }
       console.log('line 46 login');
       if (await bcrypt.compare(password, user.password)) {
