@@ -8,6 +8,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ShopModule } from './shop/shop.module';
 import { ReviewModule } from './review/review.module';
+import { BlogModule } from './blog/blog.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ReviewModule } from './review/review.module';
     AuthModule,
     ShopModule,
     ReviewModule,
+    BlogModule,
   ],
   controllers: [],
   providers: [],
