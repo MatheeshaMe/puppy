@@ -8,7 +8,7 @@ import { User } from '../user/schema/user.schema';
 
 // export type ProductType = "Shampoo" | "Toy" | "Vitamin"
 
-const array: string[] = ['Shampoo', 'Toy', 'Vitamin'];
+const array: string[] = ['Shampoo', 'Toy', 'Food'];
 
 @Injectable()
 export class ShopService {
