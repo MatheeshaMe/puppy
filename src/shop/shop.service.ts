@@ -6,7 +6,6 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../user/schema/user.schema';
 import { query, Request } from 'express';
-// export type ProductType = "Shampoo" | "Toy" | "Vitamin"
 
 const array: string[] = ['Shampoo', 'Toy', 'Food'];
 
