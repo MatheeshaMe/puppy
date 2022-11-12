@@ -33,7 +33,7 @@ export class ReviewService {
 
   async getReviews(): Promise<Review[] | Error | HttpException | number> {
     try {
-      const reviews = await this.reviewModel.find();
+      const reviews = await this.reviewModel.find().sort({ star: -1 });
       if (reviews.length < 1) {
         return new HttpException('Not reviews found', HttpStatus.NOT_FOUND);
       }
