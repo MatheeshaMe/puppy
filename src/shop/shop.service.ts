@@ -1,3 +1,4 @@
+import { UpdateShopDTO } from './dto/update-shop.dto';
 import { CreateShopDTO } from './dto/create-shop.dto';
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { ShopDocument, Shop } from './schema/shop.schema';
@@ -44,14 +45,68 @@ export class ShopService {
       console.log(error);
     }
   }
-  async getProducts() {
-    return 'get Products';
+  async getProducts(): Promise<Shop[] | Error | HttpException> {
+    try {
+      const products = await this.prodcutSchema.find();
+      console.log(products.length);
+      if (products.length < 1) {
+        return new HttpException('No products found', HttpStatus.NOT_FOUND);
+      }
+      return products;
+    } catch (error) {
+      return error;
+    }
   }
-  async updateProduct() {}
-  async deleteProduct() {}
-
-  // more
-
-  async getProductById() {}
-  async filterProducts() {}
+  async updateProduct(id: string, updateProductDTO: UpdateShopDTO, user: User) {
+    try {
+      const product = await this.prodcutSchema.findById(id);
+      if (!product) {
+        return new HttpException('no product found', HttpStatus.NOT_FOUND);
+      }
+      console.log(product.owner.toString(), user._id.toString());
+      if (product.owner.toString() !== user._id.toString()) {
+        console.log('you are not the owner');
+        throw new HttpException(
+          'you are not the owner',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      console.log(updateProductDTO.productname);
+      const updatedProduct = await this.prodcutSchema.findByIdAndUpdate(
+        id,
+        {
+          productname: updateProductDTO.productname,
+          productPrice: updateProductDTO.productPrice,
+          productphoto: updateProductDTO.productphoto,
+          producttype: updateProductDTO.producttype,
+        },
+        {
+          new: true,
+        },
+      );
+      console.log(updatedProduct);
+      return updatedProduct;
+    } catch (error) {
+      return error;
+    }
+  }
+  async deleteProduct(id: string, user: User) {
+    try {
+      const product = await this.prodcutSchema.findById(id);
+      if (!product) {
+        return new HttpException('no product found', HttpStatus.NOT_FOUND);
+      }
+      if (product.owner.toString() !== user._id.toString()) {
+        console.log('you are not the owner');
+        throw new HttpException(
+          'you are not the owner',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      await this.prodcutSchema.findByIdAndDelete(id);
+      return 'Product has been deleted';
+    } catch (error) {
+      return error;
+    }
+  }
 }
