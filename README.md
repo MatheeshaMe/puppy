@@ -56,11 +56,12 @@
 <details>
   <summary>Server</summary>
   <ul>
+    <li><a href="https://nestjs.com/">Nest.js</a></li>
     <li><a href="https://www.typescriptlang.org/">Typescript</a></li>
     <li><a href="https://expressjs.com/">Express.js</a></li>
     <li><a href="https://www.mongodb.com/">Mongo DB</a></li>
-    <li><a href="https://nestjs.com/">Nest.js</a></li>
     <li><a href="https://fakerjs.dev/">faker.js</a></li>
+    <li><a href="passportjs.org">passport js</a></li>
   </ul>
 </details>
 
