@@ -1,11 +1,8 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { User } from 'src/user/schema/user.schema';
 
-export interface ProductType {
-  shampoo?: string;
-  toy?: string;
-  vitamin?: string;
-}
+export type ProductType = "Shampoo" | "Toy" | "Vitamin"
+
 
 export class CreateShopDTO {
   owner: User;
@@ -23,6 +20,6 @@ export class CreateShopDTO {
   productphoto: string;
 
   @IsNotEmpty()
-  @IsString()
-  producttype: string;
+  // @IsString()
+  producttype: ProductType;
 }
