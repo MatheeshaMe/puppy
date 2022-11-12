@@ -22,7 +22,9 @@
     "seed:shop": "ts-node src/shop/seed.ts",
     "seed:shop:refresh": "ts-node src/shop/seed.ts --refresh",
     "seed:review": "ts-node src/review/seed.ts",
-    "seed:review:refresh": "ts-node src/review/seed.ts --refresh"
+    "seed:review:refresh": "ts-node src/review/seed.ts --refresh",
+    "seed:blog": "ts-node src/blog/seed.ts",
+    "seed:blog:refresh": "ts-node src/blog/seed.ts --refresh"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",

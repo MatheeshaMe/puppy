@@ -7,6 +7,8 @@ import {
   Body,
   UseGuards,
   Param,
+  Req,
+  Query,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -15,6 +17,8 @@ import { CreateBlogDTO, UpdateBlogDTO } from './dto/blog.dto';
 import { User } from '../user/schema/user.schema';
 import { UserDec } from 'src/utilities/user.decorator';
 import { AdminGuard } from '../guards/admin.guard';
+// import { Query } from 'mongoose';
+import { Request } from 'express';
 
 @Controller('blog')
 export class BlogController {
@@ -43,9 +47,13 @@ export class BlogController {
   }
 
   @Get()
-  async getBlogs() {
+  async getBlogs(@Req() req: Request, @Query() { skip, limit }) {
     try {
-      return await this.blogService.getBlogs();
+      return await this.blogService.getBlogs(
+        req,
+        parseInt(skip,10),
+        parseInt(limit,10)
+      );
     } catch (error) {
       return error;
     }
@@ -61,9 +69,9 @@ export class BlogController {
     return await this.blogService.updateBlog(updateBlogDTO, id, user);
   }
 
-  @Delete(":id")
+  @Delete(':id')
   @UseGuards(AuthGuard('jwt'), AdminGuard)
-  async deletBlog(@Param("id") id: string,@UserDec() user: User) {
-    return await this.blogService.deletBlog(id,user)
+  async deletBlog(@Param('id') id: string, @UserDec() user: User) {
+    return await this.blogService.deletBlog(id, user);
   }
 }

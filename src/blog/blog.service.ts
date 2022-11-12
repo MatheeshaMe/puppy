@@ -4,6 +4,7 @@ import { BlogDocument } from './schema/schema.blog';
 import { Model } from 'mongoose';
 import { CreateBlogDTO, UpdateBlogDTO } from './dto/blog.dto';
 import { User } from '../user/schema/user.schema';
+import { Request } from 'express';
 
 @Injectable()
 export class BlogService {
@@ -36,9 +37,22 @@ export class BlogService {
       return error;
     }
   }
-  async getBlogs() {
+  async getBlogs(req: Request, skip: number, limit: number) {
     try {
-      const blogs = await this.blogModel.find();
+      let options = {};
+
+      if (req.query.search) {
+        console.log(req.query.search);
+        options = {
+          $or: [
+            {
+              title: new RegExp(req.query.search.toString(), 'i'),
+            },
+          ],
+        };
+      }
+
+      const blogs = await this.blogModel.find(options).skip(skip).limit(limit);
       if (blogs.length < 1) {
         throw new HttpException('no blogs found', HttpStatus.NOT_FOUND);
       }

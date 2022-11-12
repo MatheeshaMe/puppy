@@ -7,14 +7,14 @@ import { ReviewDocument, Review } from './schema/review.schema';
 
 export class ReviewSeeder {
   constructor(
-    @InjectModel('Review') private readonly shopModel: Model<ReviewDocument>,
+    @InjectModel('Review') private readonly reviewModel: Model<ReviewDocument>,
   ) {}
 
   drop(): Promise<any> {
-    return this.shopModel.deleteMany({}) as any;
+    return this.reviewModel.deleteMany({}) as any;
   }
   seed(): Promise<any> {
     const products = DataFactory.createForClass(Review).generate(100);
-    return this.shopModel.insertMany(products);
+    return this.reviewModel.insertMany(products);
   }
 }
