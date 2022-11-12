@@ -15,7 +15,7 @@ export class Shop {
     type: SchemaTypes.ObjectId,
     ref: 'User',
     required: false,
-    default: '636eae357470ba9fc521b294',
+    // default: '636eae357470ba9fc521b294',
   })
   owner: Types.ObjectId;
 
