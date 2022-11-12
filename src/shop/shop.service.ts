@@ -5,7 +5,7 @@ import { ShopDocument, Shop } from './schema/shop.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../user/schema/user.schema';
-
+import { query, Request } from 'express';
 // export type ProductType = "Shampoo" | "Toy" | "Vitamin"
 
 const array: string[] = ['Shampoo', 'Toy', 'Food'];
@@ -45,9 +45,48 @@ export class ShopService {
       console.log(error);
     }
   }
-  async getProducts(): Promise<Shop[] | Error | HttpException> {
+  async getProducts(
+    req: Request,
+    skip: number,
+    limit: number,
+  ): Promise<Shop[] | Error | HttpException> {
     try {
-      const products = await this.prodcutSchema.find();
+      let options = {};
+      if (req.query.search) {
+        console.log(req.query.search);
+        options = {
+          $or: [
+            {
+              productname: new RegExp(req.query.search.toString(), 'i'),
+              // producttype: new RegExp(req.query.search.toString(), 'i'),
+            },
+          ],
+        };
+      }
+
+      if (req.query.tags) {
+        options = {
+          $or: [
+            {
+              producttype: new RegExp(req.query.tags.toString(), 'i'),
+            },
+          ],
+        };
+      }
+      if (req.query.owner) {
+        options = {
+          $or: [
+            {
+              owner: new RegExp(req.query.owner.toString(), 'i'),
+            },
+          ],
+        };
+      }
+      const products = await this.prodcutSchema
+        .find(options)
+        .sort({ productPrice: 'asc' })
+        .skip(skip)
+        .limit(limit);
       console.log(products.length);
       if (products.length < 1) {
         return new HttpException('No products found', HttpStatus.NOT_FOUND);
