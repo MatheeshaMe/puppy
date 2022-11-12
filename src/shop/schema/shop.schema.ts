@@ -1,9 +1,10 @@
+// import { ProductaType } from './shop.schema';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaType, SchemaTypes, Types } from 'mongoose';
-import { ProductType } from '../dto/create-shop.dto';
 import { User, UserSchema } from 'src/user/schema/user.schema';
 import { Type } from 'class-transformer';
 export type ShopDocument = HydratedDocument<Shop>;
+export type ProductType = "Shampoo" | "Toy" | "Vitamin"
 
 @Schema({ timestamps: true })
 export class Shop {
@@ -20,7 +21,7 @@ export class Shop {
   productphoto: string;
 
   @Prop()
-  producttype: string;
+  producttype: ProductType;
 }
 
 export const ShopSchema = SchemaFactory.createForClass(Shop);
