@@ -6,6 +6,16 @@ or just open an issue with the label "enhancement".
 Don't forget to give this project a star for additional support ;)
 Maybe you can mention me or this repo in the acknowledgements too
 -->
+
+<!--
+This README is a slimmed down version of the original one.
+Removed sections:
+- Screenshots
+- Running Test
+- Deployment
+- FAQ
+-->
+
 <div align="center">
 
   <img src="assets/logo.png" alt="logo" width="200" height="auto" />
@@ -14,7 +24,7 @@ Maybe you can mention me or this repo in the acknowledgements too
   <p>
     An awesome README template for your projects! 
   </p>
-  
+
   
 <!-- Badges -->
 <p>
@@ -55,7 +65,6 @@ Maybe you can mention me or this repo in the acknowledgements too
 # :notebook_with_decorative_cover: Table of Contents
 
 - [About the Project](#star2-about-the-project)
-  * [Screenshots](#camera-screenshots)
   * [Tech Stack](#space_invader-tech-stack)
   * [Features](#dart-features)
   * [Color Reference](#art-color-reference)
@@ -63,26 +72,18 @@ Maybe you can mention me or this repo in the acknowledgements too
 - [Getting Started](#toolbox-getting-started)
   * [Prerequisites](#bangbang-prerequisites)
   * [Installation](#gear-installation)
-  * [Running Tests](#test_tube-running-tests)
   * [Run Locally](#running-run-locally)
-  * [Deployment](#triangular_flag_on_post-deployment)
 - [Usage](#eyes-usage)
 - [Roadmap](#compass-roadmap)
 - [Contributing](#wave-contributing)
   * [Code of Conduct](#scroll-code-of-conduct)
-- [FAQ](#grey_question-faq)
 - [License](#warning-license)
 - [Contact](#handshake-contact)
 - [Acknowledgements](#gem-acknowledgements)
-
   
 
 <!-- About the Project -->
 ## :star2: About the Project
-
-
-<!-- Screenshots -->
-### :camera: Screenshots
 
 <div align="center"> 
   <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
@@ -184,15 +185,7 @@ Install my-project with npm
   yarn install my-project
   cd my-project
 ```
-   
-<!-- Running Tests -->
-### :test_tube: Running Tests
 
-To run tests, run the following command
-
-```bash
-  yarn test test
-```
 
 <!-- Run Locally -->
 ### :running: Run Locally
@@ -222,16 +215,6 @@ Start the server
 ```
 
 
-<!-- Deployment -->
-### :triangular_flag_on_post: Deployment
-
-To deploy this project run
-
-```bash
-  yarn deploy
-```
-
-
 <!-- Usage -->
 ## :eyes: Usage
 
@@ -252,7 +235,6 @@ function App() {
 * [x] Todo 1
 * [ ] Todo 2
 
-
 <!-- Contributing -->
 ## :wave: Contributing
 
@@ -271,17 +253,6 @@ See `contributing.md` for ways to get started.
 
 Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
 
-<!-- FAQ -->
-## :grey_question: FAQ
-
-- Question 1
-
-  + Answer 1
-
-- Question 2
-
-  + Answer 2
-
 
 <!-- License -->
 ## :warning: License
@@ -295,7 +266,6 @@ Distributed under the no License. See LICENSE.txt for more information.
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
 Project Link: [https://github.com/Louis3797/awesome-readme-template](https://github.com/Louis3797/awesome-readme-template)
-
 
 <!-- Acknowledgments -->
 ## :gem: Acknowledgements

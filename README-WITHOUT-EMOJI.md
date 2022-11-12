@@ -8,6 +8,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 -->
 <div align="center">
 
+
   <img src="assets/logo.png" alt="logo" width="200" height="auto" />
   <h1>Awesome Readme Template</h1>
   
@@ -52,37 +53,36 @@ Maybe you can mention me or this repo in the acknowledgements too
 <br />
 
 <!-- Table of Contents -->
-# :notebook_with_decorative_cover: Table of Contents
+# Table of Contents
 
-- [About the Project](#star2-about-the-project)
-  * [Screenshots](#camera-screenshots)
-  * [Tech Stack](#space_invader-tech-stack)
-  * [Features](#dart-features)
-  * [Color Reference](#art-color-reference)
-  * [Environment Variables](#key-environment-variables)
-- [Getting Started](#toolbox-getting-started)
-  * [Prerequisites](#bangbang-prerequisites)
-  * [Installation](#gear-installation)
-  * [Running Tests](#test_tube-running-tests)
-  * [Run Locally](#running-run-locally)
-  * [Deployment](#triangular_flag_on_post-deployment)
-- [Usage](#eyes-usage)
-- [Roadmap](#compass-roadmap)
-- [Contributing](#wave-contributing)
-  * [Code of Conduct](#scroll-code-of-conduct)
-- [FAQ](#grey_question-faq)
-- [License](#warning-license)
-- [Contact](#handshake-contact)
-- [Acknowledgements](#gem-acknowledgements)
-
+- [About the Project](#about-the-project)
+  * [Screenshots](#screenshots)
+  * [Tech Stack](#tech-stack)
+  * [Features](#features)
+  * [Color Reference](#color-reference)
+  * [Environment Variables](#environment-variables)
+- [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation](#installation)
+  * [Running Tests](#running-tests)
+  * [Run Locally](#run-locally)
+  * [Deployment](#deployment)
+- [Usage](#usage)
+- [Roadmap](#roadmap)
+- [Contributing](#contributing)
+  * [Code of Conduct](#code-of-conduct)
+- [FAQ](#faq)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgements](#acknowledgements)
   
 
 <!-- About the Project -->
-## :star2: About the Project
+## About the Project
 
 
 <!-- Screenshots -->
-### :camera: Screenshots
+### Screenshots
 
 <div align="center"> 
   <img src="https://placehold.co/600x400?text=Your+Screenshot+here" alt="screenshot" />
@@ -90,7 +90,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 
 
 <!-- TechStack -->
-### :space_invader: Tech Stack
+### Tech Stack
 
 <details>
   <summary>Client</summary>
@@ -137,14 +137,14 @@ Maybe you can mention me or this repo in the acknowledgements too
 </details>
 
 <!-- Features -->
-### :dart: Features
+### Features
 
 - Feature 1
 - Feature 2
 - Feature 3
 
 <!-- Color Reference -->
-### :art: Color Reference
+### Color Reference
 
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
@@ -155,7 +155,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 
 
 <!-- Env Variables -->
-### :key: Environment Variables
+### Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file
 
@@ -164,10 +164,10 @@ To run this project, you will need to add the following environment variables to
 `ANOTHER_API_KEY`
 
 <!-- Getting Started -->
-## 	:toolbox: Getting Started
+## Getting Started
 
 <!-- Prerequisites -->
-### :bangbang: Prerequisites
+### Prerequisites
 
 This project uses Yarn as package manager
 
@@ -176,7 +176,7 @@ This project uses Yarn as package manager
 ```
 
 <!-- Installation -->
-### :gear: Installation
+### Installation
 
 Install my-project with npm
 
@@ -186,7 +186,7 @@ Install my-project with npm
 ```
    
 <!-- Running Tests -->
-### :test_tube: Running Tests
+### Running Tests
 
 To run tests, run the following command
 
@@ -195,7 +195,7 @@ To run tests, run the following command
 ```
 
 <!-- Run Locally -->
-### :running: Run Locally
+### Run Locally
 
 Clone the project
 
@@ -223,7 +223,7 @@ Start the server
 
 
 <!-- Deployment -->
-### :triangular_flag_on_post: Deployment
+### Deployment
 
 To deploy this project run
 
@@ -233,7 +233,7 @@ To deploy this project run
 
 
 <!-- Usage -->
-## :eyes: Usage
+## Usage
 
 Use this space to tell a little more about your project and how it can be used. Show additional screenshots, code samples, demos or link to other resources.
 
@@ -247,14 +247,14 @@ function App() {
 ```
 
 <!-- Roadmap -->
-## :compass: Roadmap
+## Roadmap
 
 * [x] Todo 1
 * [ ] Todo 2
 
 
 <!-- Contributing -->
-## :wave: Contributing
+## Contributing
 
 <a href="https://github.com/Louis3797/awesome-readme-template/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Louis3797/awesome-readme-template" />
@@ -267,12 +267,12 @@ See `contributing.md` for ways to get started.
 
 
 <!-- Code of Conduct -->
-### :scroll: Code of Conduct
+### Code of Conduct
 
 Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-template/blob/master/CODE_OF_CONDUCT.md)
 
 <!-- FAQ -->
-## :grey_question: FAQ
+## FAQ
 
 - Question 1
 
@@ -284,13 +284,13 @@ Please read the [Code of Conduct](https://github.com/Louis3797/awesome-readme-te
 
 
 <!-- License -->
-## :warning: License
+## License
 
 Distributed under the no License. See LICENSE.txt for more information.
 
 
 <!-- Contact -->
-## :handshake: Contact
+## Contact
 
 Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
 
@@ -298,7 +298,7 @@ Project Link: [https://github.com/Louis3797/awesome-readme-template](https://git
 
 
 <!-- Acknowledgments -->
-## :gem: Acknowledgements
+## Acknowledgements
 
 Use this section to mention useful resources and libraries that you have used in your projects.
 
