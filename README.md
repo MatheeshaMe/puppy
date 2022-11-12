@@ -8,7 +8,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 -->
 <div align="center">
 
-  <img src="assets/logo.png" alt="logo" width="200" height="auto" />
+  <img src="https://media.tenor.com/mc3OyxhLazUAAAAM/doggo-doge.gif" alt="logo" width="200" height="auto" />
   <h1>Puppy 💗</h1>
   
   <p>
@@ -55,7 +55,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 # :notebook_with_decorative_cover: Table of Contents
 
 - [About the Project](#star2-about-the-project)
-  * [Screenshots](#camera-screenshots)
+  <!-- * [Screenshots](#camera-screenshots) -->
   * [Tech Stack](#space_invader-tech-stack)
   * [Features](#dart-features)
   <!-- * [Color Reference](#art-color-reference) -->
@@ -82,7 +82,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 
 
 <!-- Screenshots -->
-### :camera: Screenshots
+<!-- ### :camera: Screenshots -->
 
 <div align="center"> 
   <img src="https://media.tenor.com/gO7dKyzdBmsAAAAM/doge-doge-coin.gif" alt="screenshot" />
@@ -109,6 +109,7 @@ Maybe you can mention me or this repo in the acknowledgements too
     <li><a href="https://expressjs.com/">Express.js</a></li>
     <li><a href="https://www.mongodb.com/">Mongo DB</a></li>
     <li><a href="https://nestjs.com/">Nest.js</a></li>
+    <li><a href="https://fakerjs.dev/">faker.js</a></li>
     <!-- <li><a href="https://socket.io/">SocketIO</a></li> -->
     <!-- <li><a href="https://www.prisma.io/">Prisma</a></li>     -->
     <!-- <li><a href="https://www.apollographql.com/">Apollo</a></li> -->
@@ -145,7 +146,7 @@ Maybe you can mention me or this repo in the acknowledgements too
 - Blog 
 - Reviews
 - Puppy Shop
-- Swagger Doc
+- Swagger Docs
 
 <!-- Color Reference -->
 <!-- ### :art: Color Reference
@@ -163,9 +164,9 @@ Maybe you can mention me or this repo in the acknowledgements too
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`MONGO_DB_URL`
+`MONGO_DB_URL =  mongodb+srv://<username>:<passowrd>@clust.f1ey7.mongodb.net/?retryWrites=true&w=majority`
 
-`SECRET_KEY`
+`SECRET_KEY = user secret key`
 
 <!-- Getting Started -->
 ## 	:toolbox: Getting Started
@@ -180,24 +181,16 @@ This project uses Yarn as package manager
 ```
 
 <!-- Installation -->
-### :gear: Installation
+<!-- ### :gear: Installation
 
-Install my-project with npm
+Install puppy with npm
 
 ```bash
   cd my-project
   yarn install
   
-```
+``` -->
    
-<!-- Running Tests -->
-### :test_tube: Running Tests
-
-To run tests, run the following command
-
-```bash
-  yarn test test
-```
 
 <!-- Run Locally -->
 ### :running: Run Locally
@@ -225,6 +218,15 @@ Start the dev server
 ```bash
   yarn start:dev
 ```
+
+<!-- Running Tests
+### :test_tube: Running Tests
+
+To run tests, run the following command
+
+```bash
+  yarn test test
+``` -->
 
 
 <!-- Deployment -->
