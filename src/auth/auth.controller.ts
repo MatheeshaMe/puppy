@@ -10,7 +10,7 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { UserService } from '../user/user.service';
 import { AuthService } from './auth.service';
-import { RegisterDTO, LoginDTO } from '../../dist/auth/auth.dto';
+import { RegisterDTO, LoginDTO } from './auth.dto';
 import { Payload } from './payload';
 import { AdminGuard } from '../guards/admin.guard';
 import { UserDec } from 'src/utilities/user.decorator';

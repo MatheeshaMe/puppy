@@ -7,7 +7,7 @@ import { SchemaNames } from 'src/config/SchemaNames';
 import { User, UserDocument } from './schema/user.schema';
 import { LoginUserDTO } from './dto/loginUser.dto';
 import * as bcrypt from 'bcrypt';
-import { Payload } from '../../dist/auth/payload';
+import { Payload } from '../auth/payload';
 @Injectable()
 export class UserService {
   constructor(
@@ -72,7 +72,7 @@ export class UserService {
     }
   }
 
-  async findByPayload(payload: Payload) {
+  async findByPayload(payload: Payload):Promise <User> {
     const { name } = payload;
     return await this.userModel.findOne({ name });
   }
@@ -101,7 +101,7 @@ export class UserService {
     }
   }
 
-  async deleteUser(id: string) {
+  async deleteUser(id: string): Promise<string > {
     try {
       const isUserAvailable = await this.userModel.findById(id);
       if (!isUserAvailable) {
