@@ -13,8 +13,8 @@ import { AuthService } from './auth.service';
 import { RegisterDTO, LoginDTO } from './auth.dto';
 import { Payload } from './payload';
 import { AdminGuard } from '../guards/admin.guard';
-import { UserDec } from 'src/utilities/user.decorator';
-import { User } from 'src/user/schema/user.schema';
+import { UserDec } from '../utilities/user.decorator';
+import { User } from '../user/schema/user.schema';
 
 @Controller('auth')
 export class AuthController {
