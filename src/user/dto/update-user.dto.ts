@@ -20,5 +20,5 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
   accounts: string;
 
   @IsBoolean()
-  isAdmin:boolean
+  isAdmin: boolean;
 }
