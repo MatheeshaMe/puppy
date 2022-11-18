@@ -3,7 +3,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { SchemaNames } from 'src/config/SchemaNames';
+import { SchemaNames } from '../config/SchemaNames';
 import { User, UserDocument } from './schema/user.schema';
 import { LoginUserDTO } from './dto/loginUser.dto';
 import * as bcrypt from 'bcrypt';
@@ -21,7 +21,6 @@ export class UserService {
 
       const user = await this.userModel.findOne({ name: name });
       if (user) {
-        
         throw new HttpException(
           'user already exist',
           HttpStatus.NOT_ACCEPTABLE,
@@ -72,7 +71,7 @@ export class UserService {
     }
   }
 
-  async findByPayload(payload: Payload):Promise <User> {
+  async findByPayload(payload: Payload): Promise<User> {
     const { name } = payload;
     return await this.userModel.findOne({ name });
   }
@@ -101,7 +100,7 @@ export class UserService {
     }
   }
 
-  async deleteUser(id: string): Promise<string > {
+  async deleteUser(id: string): Promise<string> {
     try {
       const isUserAvailable = await this.userModel.findById(id);
       if (!isUserAvailable) {
