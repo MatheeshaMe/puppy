@@ -1,36 +1,34 @@
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsNotEmpty, IsString } from 'class-validator';
 import { User } from '../../user/schema/user.schema';
 
-export class CreateBlogDTO{
+export class CreateBlogDTO {
+  owner: User;
 
-    owner:User
+  @IsNotEmpty()
+  @IsString()
+  title: string;
 
-    @IsNotEmpty()
-    @IsString()
-    title:string;
+  @IsNotEmpty()
+  @IsString()
+  photo: string;
 
-    @IsNotEmpty()
-    @IsString()
-    photo:string;
-
-    @IsNotEmpty()
-    @IsString()
-    desc:string 
+  @IsNotEmpty()
+  @IsString()
+  desc: string;
 }
 
-export class UpdateBlogDTO{
+export class UpdateBlogDTO {
+  owner: User;
 
-    owner:User
+  @IsNotEmpty()
+  @IsString()
+  title: string;
 
-    @IsNotEmpty()
-    @IsString()
-    title:string;
+  @IsNotEmpty()
+  @IsString()
+  photo: string;
 
-    @IsNotEmpty()
-    @IsString()
-    photo:string;
-
-    @IsNotEmpty()
-    @IsString()
-    desc:string 
+  @IsNotEmpty()
+  @IsString()
+  desc: string;
 }
