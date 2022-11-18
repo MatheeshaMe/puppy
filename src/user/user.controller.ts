@@ -27,8 +27,8 @@ export class UserController {
   //   return this.userService.findByLogin(loginUserDTO);
   // }
 
-  @Put(":name")
-  updateUser(@Body() updateUserDTO:UpdateUserDto){
-    return this.userService.updateUser(updateUserDTO)
+  @Put(':name')
+  updateUser(@Body() updateUserDTO: UpdateUserDto) {
+    return this.userService.updateUser(updateUserDTO);
   }
 }
