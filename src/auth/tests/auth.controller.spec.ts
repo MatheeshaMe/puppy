@@ -13,7 +13,7 @@ import { UserModel } from "./support/user.model";
 describe("Auth test", () => {
   let authController: AuthController;
 
-  describe("Find operations", () => {
+  describe("Auth operations initializing", () => {
     let userModel: UserModel;
 
     beforeEach(async () => {
@@ -34,10 +34,9 @@ describe("Auth test", () => {
 
       jest.clearAllMocks();
     });
-    describe("first", () => {
-      test("should first", () => {
-        console.log("test");
-      });
+    describe("Find One", () => {
+      test('should first', () => { console.log("first");
+       })
     });
   });
 });
