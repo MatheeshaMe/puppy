@@ -1,7 +1,7 @@
 // import { ProductaType } from './shop.schema';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, SchemaType, SchemaTypes, Types } from 'mongoose';
-import { User, UserSchema } from 'src/user/schema/user.schema';
+// import { User, UserSchema } from 'src/user/schema/user.schema';
 import { Type } from 'class-transformer';
 import { Factory } from 'nestjs-seeder';
 import { faker } from '@faker-js/faker';
