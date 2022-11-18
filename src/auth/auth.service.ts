@@ -11,7 +11,7 @@ export class AuthService {
     return sign(payload, process.env.SECRET_KEY!, { expiresIn: '12h' });
   }
 
-  async validateUser(payload:Payload){
-    return await this.userService.findByPayload(payload)
+  async validateUser(payload: Payload) {
+    return await this.userService.findByPayload(payload);
   }
 }
