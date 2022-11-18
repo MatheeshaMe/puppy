@@ -1,8 +1,7 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { User } from 'src/user/schema/user.schema';
+import { User } from '../../user/schema/user.schema';
 
-export type ProductType = "Shampoo" | "Toy" | "Vitamin"
-
+export type ProductType = 'Shampoo' | 'Toy' | 'Vitamin';
 
 export class CreateShopDTO {
   owner: User;
