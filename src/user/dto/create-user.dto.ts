@@ -19,7 +19,7 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   password: string;
-  
+
   @IsBoolean()
-  isAdmin:boolean
+  isAdmin: boolean;
 }
