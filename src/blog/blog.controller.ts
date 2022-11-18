@@ -51,8 +51,8 @@ export class BlogController {
     try {
       return await this.blogService.getBlogs(
         req,
-        parseInt(skip,10),
-        parseInt(limit,10)
+        parseInt(skip, 10),
+        parseInt(limit, 10),
       );
     } catch (error) {
       return error;
