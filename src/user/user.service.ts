@@ -8,6 +8,7 @@ import { User, UserDocument } from './schema/user.schema';
 import { LoginUserDTO } from './dto/loginUser.dto';
 import * as bcrypt from 'bcrypt';
 import { Payload } from '../auth/payload';
+
 @Injectable()
 export class UserService {
   constructor(
@@ -33,7 +34,6 @@ export class UserService {
         address,
         photo,
         accounts,
-
         password: hashedPassword,
         isAdmin,
       });
@@ -55,11 +55,16 @@ export class UserService {
       // .select('name address photo accounts password ');
 
       if (!user) {
-        throw new HttpException('Not user found', HttpStatus.UNAUTHORIZED);
+        throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);
       }
       console.log('line 46 login');
       if (await bcrypt.compare(password, user.password)) {
-        return user;
+        console.log("line 62",user)
+        const {password ,...data} = user
+        return{
+          user:data,
+          status: new HttpException("Accepted",HttpStatus.ACCEPTED)
+        }
       } else {
         throw new HttpException(
           'password does not match',
