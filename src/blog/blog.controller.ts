@@ -15,7 +15,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { BlogService } from './blog.service';
 import { CreateBlogDTO, UpdateBlogDTO } from './dto/blog.dto';
 import { User } from '../user/schema/user.schema';
-import { UserDec } from 'src/utilities/user.decorator';
+import { UserDec } from '../utilities/user.decorator';
 import { AdminGuard } from '../guards/admin.guard';
 // import { Query } from 'mongoose';
 import { Request } from 'express';
