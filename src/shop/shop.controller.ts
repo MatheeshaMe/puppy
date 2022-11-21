@@ -3,7 +3,7 @@ import { Controller, Delete, Get, Post, Query, Req } from '@nestjs/common';
 import { Body, Param, Put, UseGuards } from '@nestjs/common/decorators';
 import { ShopService } from './shop.service';
 import { AuthGuard } from '@nestjs/passport';
-import { AdminGuard } from 'src/guards/admin.guard';
+import { AdminGuard } from '../guards/admin.guard';
 import { UserDec } from '../utilities/user.decorator';
 import { User } from '../user/schema/user.schema';
 import { UpdateShopDTO } from './dto/update-shop.dto';
