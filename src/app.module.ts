@@ -11,8 +11,8 @@ import { ReviewModule } from './review/review.module';
 import { BlogModule } from './blog/blog.module';
 
 @Module({
-  imports: [
-    PuppyModule,
+imports: [
+  PuppyModule,
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
