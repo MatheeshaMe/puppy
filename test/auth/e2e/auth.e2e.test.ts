@@ -18,7 +18,7 @@ afterAll(async () => {
 describe("Authentication", () => {
   const app = "http://localhost:3000/";
 
-  const newUser: CreateUserDto = {
+  const newUser: CreateUserDto = { 
     name: userStub().name,
     address: userStub().address,
     photo: userStub().photo,

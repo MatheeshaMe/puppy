@@ -8,11 +8,29 @@ import { AuthController } from "../auth.controller";
 import { AuthModule } from "../auth.module";
 import { AuthService } from "../auth.service";
 import { UserModel } from "./support/user.model";
+import { domainToASCII } from "url";
 
 
 describe("Auth test", () => {
   let authController: AuthController;
-
+  const mockAuthServices = {
+    register: jest.fn(registerDTO => {
+      return {
+        ...registerDTO,
+      }
+    }),
+    findOne:jest.fn(name=>{
+      return {
+        name
+      }
+    })
+    // create: jest.fn().mockResolvedValue((functon,dto)=>{
+    //   return {
+    //     ...dto,
+    //     functon
+    //   }
+    // })
+  }
   describe("Auth operations initializing", () => {
     let userModel: UserModel;
 
@@ -26,17 +44,39 @@ describe("Auth test", () => {
             useClass: UserModel,
           },
           AuthService,
-        ],
-      }).compile();
+        ],       
+      }).overrideProvider(AuthService).useValue(mockAuthServices).compile()
 
       authController = moduleRef.get<AuthController>(AuthController)
       userModel = moduleRef.get<UserModel>(getModelToken(SchemaNames.USER))
 
       jest.clearAllMocks();
     });
-    describe("Find One", () => {
-      test('should first', () => { console.log("first");
-       })
+    describe("Auth", () => {
+      test('AuthController should be defined', () => {
+        expect(authController).toBeDefined()
+      })
+      test("Should register", () => {
+        // expect(
+        //   authController.register({
+        //   name: "string",
+        //   address: "string",
+        //   photo: "string",
+        //   accounts: "string",
+        //   password: "string",
+        //   isAdmin: true
+        // })).toEqual({
+        //   name:"string"
+        // })
+        const a = authController.register({
+          name: "string",
+          address: "string",
+          photo: "string",
+          accounts: "string",
+          password: "string",
+          isAdmin: true
+        })
+      })
     });
   });
 });
