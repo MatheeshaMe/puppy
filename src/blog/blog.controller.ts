@@ -48,12 +48,14 @@ export class BlogController {
   }
 
   @Get()
-  async getBlogs(@Req() req: Request, @Query() { skip, limit }):Promise<Blog[]>{
+  async getBlogs( @Query() { skip, limit }):Promise<Blog[]>{//@Req() req: Request,
     try {
       return await this.blogService.getBlogs(
-        req,
+        // req,
         parseInt(skip, 10),
         parseInt(limit, 10),
+        // skip,
+        // limit
       );
     } catch (error) {
       return error;
