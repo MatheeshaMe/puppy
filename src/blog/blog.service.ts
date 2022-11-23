@@ -1,6 +1,6 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { BlogDocument } from './schema/schema.blog';
+import { Blog, BlogDocument } from './schema/schema.blog';
 import { Model } from 'mongoose';
 import { CreateBlogDTO, UpdateBlogDTO } from './dto/blog.dto';
 import { User } from '../user/schema/user.schema';
@@ -12,7 +12,7 @@ export class BlogService {
     @InjectModel('Blog') private readonly blogModel: Model<BlogDocument>,
   ) {}
 
-  async createBlog(createBlogDTO: CreateBlogDTO, user: User) {
+  async createBlog(createBlogDTO: CreateBlogDTO, user: User):Promise<Blog> {
     try {
       const { title, photo, desc } = createBlogDTO;
       const { _id } = user;
@@ -26,18 +26,19 @@ export class BlogService {
       return newBlog.save();
     } catch (error) {}
   }
-  async getBlogById(id: string) {
-    try {
+  async getBlogById(id: string):Promise<Blog > {
+  try {
       const blog = await this.blogModel.findById(id);
       if (!blog) {
         throw new HttpException('no blog found', HttpStatus.NOT_FOUND);
       }
       return blog;
+      // return "hi"
     } catch (error) {
       return error;
     }
   }
-  async getBlogs(req: Request, skip: number, limit: number) {
+  async getBlogs(req: Request, skip: number, limit: number):Promise<Blog[]> {
     try {
       let options = {};
 
@@ -61,7 +62,7 @@ export class BlogService {
       return error;
     }
   }
-  async updateBlog(updateBlogDTO: UpdateBlogDTO, id: string, user: User) {
+  async updateBlog(updateBlogDTO: UpdateBlogDTO, id: string, user: User):Promise<Blog> {
     try {
       const blog = await this.blogModel.findById(id);
       if (!blog) {
@@ -87,7 +88,7 @@ export class BlogService {
       return error;
     }
   }
-  async deletBlog(id: string, user: User) {
+  async deletBlog(id: string, user: User):Promise<{message:string}>{
     try {
       const blog = await this.blogModel.findById(id);
       if (!blog) {
@@ -102,7 +103,7 @@ export class BlogService {
           HttpStatus.BAD_REQUEST,
         );
       }
-
+       await this.blogModel.findByIdAndDelete(id)
       return {
         message: 'Blog has been deleted successfully',
       };
