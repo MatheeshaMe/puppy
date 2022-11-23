@@ -37,10 +37,11 @@ export class UserService {
         password: hashedPassword,
         isAdmin,
       });
-      const usr = await newUser.save();
-      return usr;
+      const { ...data} = await newUser.save();
+      // console.log(usr)
+      return data;
     } catch (error) {
-      throw new HttpException(error, HttpStatus.BAD_REQUEST);
+    throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }
   }
   async login(
