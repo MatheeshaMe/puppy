@@ -6,7 +6,7 @@ export type BlogDocument = HydratedDocument<Blog>;
 
 @Schema({ timestamps: true })
 export class Blog {
-  @Prop({ default: '636eae2e7470ba9fc521b292' })
+  @Prop({ default: '637caa41c9977fd7e0db28d0' })
   owner: Types.ObjectId;
 
   @Factory((faker) => faker.lorem.sentences(2))
