@@ -19,6 +19,7 @@ import { UserDec } from '../utilities/user.decorator';
 import { AdminGuard } from '../guards/admin.guard';
 // import { Query } from 'mongoose';
 import { Request } from 'express';
+import { Blog } from './schema/schema.blog';
 
 @Controller('blog')
 export class BlogController {
@@ -29,7 +30,7 @@ export class BlogController {
   async createBlog(
     @Body() createBlogDTO: CreateBlogDTO,
     @UserDec() user: User,
-  ) {
+  ):Promise<Blog> {
     try {
       return await this.blogService.createBlog(createBlogDTO, user);
     } catch (error) {
@@ -38,7 +39,7 @@ export class BlogController {
   }
 
   @Get(':id')
-  async getBlogById(@Param('id') id: string) {
+  async getBlogById(@Param('id') id: string):Promise<Blog> {
     try {
       return await this.blogService.getBlogById(id);
     } catch (error) {
@@ -47,7 +48,7 @@ export class BlogController {
   }
 
   @Get()
-  async getBlogs(@Req() req: Request, @Query() { skip, limit }) {
+  async getBlogs(@Req() req: Request, @Query() { skip, limit }):Promise<Blog[]>{
     try {
       return await this.blogService.getBlogs(
         req,
@@ -65,13 +66,13 @@ export class BlogController {
     @Body() updateBlogDTO: UpdateBlogDTO,
     @Param('id') id: string,
     @UserDec() user: User,
-  ) {
+  ):Promise<Blog> {
     return await this.blogService.updateBlog(updateBlogDTO, id, user);
   }
 
   @Delete(':id')
   @UseGuards(AuthGuard('jwt'), AdminGuard)
-  async deletBlog(@Param('id') id: string, @UserDec() user: User) {
+  async deletBlog(@Param('id') id: string, @UserDec() user: User):Promise<{message:string}> {
     return await this.blogService.deletBlog(id, user);
   }
 }
