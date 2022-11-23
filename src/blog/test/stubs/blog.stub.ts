@@ -15,7 +15,7 @@ export const blogStub = () =>{
         },
         title:"Title",
         photos:"photo",
-        desc:"Desc"
+        desc:"Desc",
 
     }
 }
