@@ -38,20 +38,20 @@ export class BlogService {
       return error;
     }
   }
-  async getBlogs(req: Request, skip: number, limit: number):Promise<Blog[]> {
+  async getBlogs( skip: number, limit: number):Promise<Blog[]> {//req: Request,
     try {
       let options = {};
 
-      if (req.query.search) {
-        console.log(req.query.search);
-        options = {
-          $or: [
-            {
-              title: new RegExp(req.query.search.toString(), 'i'),
-            },
-          ],
-        };
-      }
+      // if (req.query.search) {
+      //   console.log(req.query.search);
+      //   options = {
+      //     $or: [
+      //       {
+      //         title: new RegExp(req.query.search.toString(), 'i'),
+      //       },
+      //     ],
+      //   };
+      // }
 
       const blogs = await this.blogModel.find(options).skip(skip).limit(limit);
       if (blogs.length < 1) {
@@ -71,12 +71,12 @@ export class BlogService {
 
       //   const { title, photo, desc } = updateBlogDTO;
       //   const { _id } = user;
-      if (user._id.toString() !== blog.owner.toString()) {
-        throw new HttpException(
-          'You are not the owner of the blog',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
+      // if (user._id.toString() !== blog.owner.toString()) {
+      //   throw new HttpException(
+      //     'You are not the owner of the blog',
+      //     HttpStatus.BAD_REQUEST,
+      //   );
+      // }
       const updatedBlog = await this.blogModel.findByIdAndUpdate(
         id,
         updateBlogDTO,
