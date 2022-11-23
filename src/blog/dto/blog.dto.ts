@@ -2,17 +2,17 @@ import { IsNotEmpty, IsString } from 'class-validator';
 import { User } from '../../user/schema/user.schema';
 
 export class CreateBlogDTO {
-  owner: User;
+  owner?: User;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsString()
   title: string;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsString()
-  photo: string;
+  photo?: string;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsString()
   desc: string;
 }
@@ -20,15 +20,15 @@ export class CreateBlogDTO {
 export class UpdateBlogDTO {
   owner: User;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsString()
   title: string;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsString()
-  photo: string;
+  photo?: string;
 
-  @IsNotEmpty()
+  // @IsNotEmpty()
   @IsString()
   desc: string;
 }
