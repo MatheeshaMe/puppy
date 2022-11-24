@@ -1,5 +1,4 @@
-import { Blog } from "src/blog/schema/schema.blog"
-import { User } from "src/user/schema/user.schema"
+
 
 export abstract class MockBlogModel<T>{
     protected abstract blogStub:T
