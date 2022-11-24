@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { ShopModule } from './shop/shop.module';
 import { ReviewModule } from './review/review.module';
 import { BlogModule } from './blog/blog.module';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
 imports: [
@@ -18,12 +19,13 @@ imports: [
       isGlobal: true,
       load: [configuration],
     }),
-    MongooseModule.forRoot(process.env.MONGO_DB_URL!),
+    // MongooseModule.forRoot(process.env.MONGO_DB_URL!),
     UserModule,
     AuthModule,
     ShopModule,
     ReviewModule,
     BlogModule,
+    DatabaseModule
   ],
   controllers: [],
   providers: [],
