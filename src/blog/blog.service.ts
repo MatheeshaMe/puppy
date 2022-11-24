@@ -70,12 +70,12 @@ export class BlogService {
 
       //   const { title, photo, desc } = updateBlogDTO;
       //   const { _id } = user;
-      if (user._id.toString() !== blog.owner.toString()) {
-        throw new HttpException(
-          'You are not the owner of the blog',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
+      // if (user._id.toString() !== blog.owner.toString()) {
+      //   throw new HttpException(
+      //     'You are not the owner of the blog',
+      //     HttpStatus.BAD_REQUEST,
+      //   );
+      // }
       const updatedBlog = await this.blogModel.findByIdAndUpdate(
         id,
         updateBlogDTO,
@@ -96,12 +96,12 @@ export class BlogService {
 
       //   const { title, photo, desc } = updateBlogDTO;
       //   const { _id } = user;
-      if (user._id.toString() !== blog.owner.toString()) {
-        throw new HttpException(
-          'You are not the owner of the blog',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
+      // if (user._id.toString() !== blog.owner.toString()) {
+      //   throw new HttpException(
+      //     'You are not the owner of the blog',
+      //     HttpStatus.BAD_REQUEST,
+      //   );
+      // }
 
       return {
         message: 'Blog has been deleted successfully',
