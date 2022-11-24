@@ -88,7 +88,7 @@ export class BlogService {
       return error;
     }
   }
-  async deletBlog(id: string, user: User):Promise<{message:string}>{
+  async deletBlog(id: string, user: User):Promise<{}>{
     try {
       const blog = await this.blogModel.findById(id);
       if (!blog) {
@@ -97,12 +97,13 @@ export class BlogService {
 
       //   const { title, photo, desc } = updateBlogDTO;
       //   const { _id } = user;
-      if (user._id.toString() !== blog.owner.toString()) {
-        throw new HttpException(
-          'You are not the owner of the blog',
-          HttpStatus.BAD_REQUEST,
-        );
-      }
+      
+      // if (user._id.toString() !== blog.owner.toString()) {
+      //   throw new HttpException(
+      //     'You are not the owner of the blog',
+      //     HttpStatus.BAD_REQUEST,
+      //   );
+      // }
        await this.blogModel.findByIdAndDelete(id)
       return {
         message: 'Blog has been deleted successfully',
