@@ -9,6 +9,7 @@ import {
   Param,
   Req,
   Query,
+  HttpException,
 } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
@@ -26,11 +27,11 @@ export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
   @Post()
-  @UseGuards(AuthGuard('jwt'), AdminGuard)
+  // @UseGuards(AuthGuard('jwt'), AdminGuard)
   async createBlog(
     @Body() createBlogDTO: CreateBlogDTO,
     @UserDec() user: User,
-  ):Promise<Blog> {
+  ):Promise<Blog > {
     try {
       return await this.blogService.createBlog(createBlogDTO, user);
     } catch (error) {

@@ -6,7 +6,7 @@ import "dotenv/config"
 seeder({
   imports: [
     MongooseModule.forRoot(
-      process.env.MONGO_DB_URL
+      process.env.MONGO_DB_URL_TEST
       // || "mongodb+srv://praveen:praveen@cluster0.f1ey7.mongodb.net/main"
       ),
     MongooseModule.forFeature([{ name: 'Blog', schema: BlogSchema }]),

@@ -12,7 +12,7 @@ export class BlogService {
     @InjectModel('Blog') private readonly blogModel: Model<BlogDocument>,
   ) {}
 
-  async createBlog(createBlogDTO: CreateBlogDTO, user: User):Promise<Blog> {
+  async createBlog(createBlogDTO: CreateBlogDTO, user: User) {
     try {
       const { title, photo, desc } = createBlogDTO;
       const { _id } = user;

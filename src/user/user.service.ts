@@ -20,14 +20,14 @@ export class UserService {
       const { name, address, photo, accounts, password, isAdmin } =
         createUserDto;
 
-      const user = await this.userModel.findOne({ name: name }) as User
+      const user = await this.userModel.findOne({ name: name }) 
       if (user) {
         throw new HttpException(
           'user already exist',
           HttpStatus.NOT_ACCEPTABLE,
         );
       }
-      const hashedPassword = await bcrypt.hash(password, 10) as string
+      const hashedPassword = await bcrypt.hash(password, 10) 
       console.log(hashedPassword);
       const newUser = new this.userModel({
         name,
@@ -37,9 +37,9 @@ export class UserService {
         password: hashedPassword,
         isAdmin,
       });
-      const { ...data} = await newUser.save();
-      // console.log(usr)
-      return data;
+      const usr = await newUser.save();
+      console.log(usr)
+      return usr;
     } catch (error) {
     throw new HttpException(error, HttpStatus.BAD_REQUEST);
     }

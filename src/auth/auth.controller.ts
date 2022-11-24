@@ -32,6 +32,8 @@ export class AuthController {
       isAdmin: user.isAdmin,
     };
 
+    console.log(payload)
+
     const token = await this.authService.signPayload(payload);
     return { user, token };
   }
@@ -47,7 +49,7 @@ export class AuthController {
       isAdmin: user.isAdmin,
     };
 
-    const token = await this.authService.signPayload(payload) as string;
+    const token = await this.authService.signPayload(payload);
 
     return { user, token };
   }
