@@ -47,7 +47,7 @@ export class AuthController {
       isAdmin: user.isAdmin,
     };
 
-    const token = await this.authService.signPayload(payload);
+    const token = await this.authService.signPayload(payload) as string;
 
     return { user, token };
   }
