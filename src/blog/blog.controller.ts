@@ -74,7 +74,7 @@ export class BlogController {
 
   @Delete(':id')
   @UseGuards(AuthGuard('jwt'), AdminGuard)
-  async deletBlog(@Param('id') id: string, @UserDec() user: User):Promise<{message:string}> {
+  async deletBlog(@Param('id') id: string, @UserDec() user: User):Promise<{}> {
     return await this.blogService.deletBlog(id, user);
   }
 }
