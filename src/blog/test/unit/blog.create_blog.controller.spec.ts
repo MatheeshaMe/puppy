@@ -1,11 +1,11 @@
-import { BlogController } from "../blog.controller"
+import { BlogController } from "../../blog.controller"
 import { Test } from "@nestjs/testing"
-import { BlogService } from "../blog.service"
+import { BlogService } from "../../blog.service"
 import { getModelToken } from "@nestjs/mongoose"
-import { BlogModel } from "./support/blog.model"
-import { Blog } from "../schema/schema.blog"
-import { blogStub, constructorSpyBlog } from "./stubs/blog.stub"
-import { userStub } from "./stubs/user.stub"
+import { BlogModel } from "../support/blog.model"
+import { Blog } from "../../schema/schema.blog"
+import { blogStub, constructorSpyBlog } from "../stubs/blog.stub"
+import { userStub } from "../stubs/user.stub"
 import { compareSync } from "bcrypt"
 
 describe('Blog repo', () => {

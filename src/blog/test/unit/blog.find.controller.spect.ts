@@ -1,9 +1,9 @@
 import { getModelToken } from "@nestjs/mongoose"
 import { Test } from "@nestjs/testing"
-import { BlogController } from "../blog.controller"
-import { BlogService } from "../blog.service"
-import { Blog } from "../schema/schema.blog"
-import { BlogModel } from "./support/blog.model"
+import { BlogController } from "../../blog.controller"
+import { BlogService } from "../../blog.service"
+import { Blog } from "../../schema/schema.blog"
+import { BlogModel } from "../support/blog.model"
 
 describe("Find", () => {
     let blogController: BlogController

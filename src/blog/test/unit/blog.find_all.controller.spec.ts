@@ -1,15 +1,16 @@
 import { getModelToken } from "@nestjs/mongoose"
 import { Test } from "@nestjs/testing"
-import { BlogController } from "../blog.controller"
-import { BlogService } from "../blog.service"
-import { Blog } from "../schema/schema.blog"
-import { blogStub } from "./stubs/blog.stub"
-import { reqStub } from "./stubs/req.stub"
-import { userStub } from "./stubs/user.stub"
-import { BlogModel } from "./support/blog.model"
+import { BlogController } from "../../blog.controller"
+import { BlogService } from "../../blog.service"
+import { Blog } from "../../schema/schema.blog"
+import { blogStub } from "../stubs/blog.stub"
+import { reqStub } from "../stubs/req.stub"
+import { userStub } from "../stubs/user.stub"
+import { BlogModel } from "../support/blog.model"
 
 import { ExecutionContext } from '@nestjs/common';
 import { createMock } from '@golevelup/ts-jest';
+import { Response } from 'express';
 
 
 describe('Blog Controller', () => { 
@@ -35,7 +36,6 @@ describe('Blog Controller', () => {
 
 
     describe('FindAll', () => { 
-
         const mockResponseObject =()=>{
             return createMock<Request>({
 
@@ -45,7 +45,18 @@ describe('Blog Controller', () => {
         let blogs:Blog[];
         beforeEach(async ()=>{
             jest.spyOn(blogModel,"find")
-            blogs = await blogController.getBlogs({
+            blogs = await blogController.getBlogs(
+                createMock<Response | any>({
+                    req:jest.fn().mockRejectedValue({
+                        query:jest.fn().mockReturnValue({
+                            search:jest.fn().mockReturnValue({
+                                // options:jest.fn().mockReturnValue({
+                                    title:"main"
+                            })
+                        })
+                    })
+                }),
+                {
                 skip:10,
                 limit:2
             })
@@ -53,6 +64,7 @@ describe('Blog Controller', () => {
         })
         test('should call the user model', () => { 
             expect(blogModel.find).toBeCalled()
+            console.log("blog find is done mf")
          })
         // test('should return a blog', () => { 
         //     expect(blogs).toHaveProperty("desc")

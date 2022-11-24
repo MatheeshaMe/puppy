@@ -1,11 +1,11 @@
 import { getModelToken } from "@nestjs/mongoose"
 import { Test } from "@nestjs/testing"
-import { BlogController } from "../blog.controller"
-import { BlogService } from "../blog.service"
-import { Blog } from "../schema/schema.blog"
-import { blogStub } from "./stubs/blog.stub"
-import { userStub } from "./stubs/user.stub"
-import { BlogModel } from "./support/blog.model"
+import { BlogController } from "../../blog.controller"
+import { BlogService } from "../../blog.service"
+import { Blog } from "../../schema/schema.blog"
+import { blogStub } from "../stubs/blog.stub"
+import { userStub } from "../stubs/user.stub"
+import { BlogModel } from "../support/blog.model"
 
 describe('Blog Controller', () => { 
 
