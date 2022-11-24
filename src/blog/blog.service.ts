@@ -38,20 +38,20 @@ export class BlogService {
       return error;
     }
   }
-  async getBlogs( skip: number, limit: number):Promise<Blog[]> {//req: Request,
+  async getBlogs(req: Request, skip: number, limit: number):Promise<Blog[]> {//req: Request,
     try {
       let options = {};
 
-      // if (req.query.search) {
-      //   console.log(req.query.search);
-      //   options = {
-      //     $or: [
-      //       {
-      //         title: new RegExp(req.query.search.toString(), 'i'),
-      //       },
-      //     ],
-      //   };
-      // }
+      if (req.query.search) {
+        console.log(req.query.search);
+        options = {
+          $or: [
+            {
+              title: new RegExp(req.query.search.toString(), 'i'),
+            },
+          ],
+        };
+      }
 
       const blogs = await this.blogModel.find(options).skip(skip).limit(limit);
       if (blogs.length < 1) {
