@@ -34,7 +34,7 @@ describe('Blog Controller', () => {
     })
 
 
-    describe('FindOne', () => { 
+    describe('FindAll', () => { 
 
         const mockResponseObject =()=>{
             return createMock<Request>({
