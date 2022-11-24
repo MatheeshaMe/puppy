@@ -4,11 +4,11 @@ import * as mongoose from 'mongoose';
 import { AppModule } from '../src/app.module';
 import { DatabaseService } from '../src/database/database.service';
 import * as request from 'supertest';
-import { CreateBlogDTO } from '../src/blog/dto/blog.dto';
+import { CreateBlogDTO, UpdateBlogDTO } from '../src/blog/dto/blog.dto';
 import { userStub } from '../src/blog/test/stubs/user.stub';
 import { CreateUserDto } from '../src/user/dto/create-user.dto';
 import { LoginUserDTO } from '../src/user/dto/loginUser.dto';
-
+import * as axios from "axios"
 describe('Blog E2E', () => {
 
   let app: INestApplication;
@@ -37,14 +37,14 @@ describe('Blog E2E', () => {
   });
   beforeEach(async () => {
     console.log("before each block")
-    await dbConnection.collection('blogs').deleteMany({});
+    // await dbConnection.collection('blogs').deleteMany({});
     // await dbConnection.collection('users').deleteMany({});
 
   })
 
 
   describe('Register a new use', () => {
-    test('Register', async () => {
+    test('Register Admin', async () => {
       const createUserRequest: CreateUserDto = {
         name: "admin",
         address: "admin",
@@ -57,6 +57,22 @@ describe('Blog E2E', () => {
       const response = await request(httpServer).post('/auth/register').send(createUserRequest)
       // console.log(response)
       expect(response.status).toBe(201)
+    })
+    test('Register User', async () => {
+      const createUserRequest: CreateUserDto = {
+        name: "user",
+        address: "user",
+        photo: "user",
+        accounts: "user",
+        password: "user",
+        isAdmin: false
+      }
+
+      const response = await request(httpServer).post('/auth/register').send(createUserRequest)
+      // console.log(response)
+      expect(response.status).toBe(201)
+      expect(response.body).toBeDefined()
+      console.log(response.body)
     })
     test('If username already exist', async () => {
       const createUserRequest: CreateUserDto = {
@@ -114,23 +130,35 @@ describe('Blog E2E', () => {
     })
   })
   describe('Blogs', () => {
-    let jwttoken: string
+    let jwttokenAdmin: string
+    let jwttokenUser: string
     beforeEach(async () => {
-      const loginUserRequest: LoginUserDTO = {
+      const loginAdminRequest: LoginUserDTO = {
         name: "admin",
         password: "admin"
       }
-      const response = await request(httpServer).post('/auth/login').send(loginUserRequest)
+      const loginUserRequest: LoginUserDTO = {
+        name: "user",
+        password: "user"
+      }
+
+      const adminResponse = await request(httpServer).post('/auth/login').send(loginAdminRequest)
+      const userResponse = await request(httpServer).post('/auth/login').send(loginUserRequest)
       // console.log(response)
-      expect(response.status).toBe(201)
-      if (response.status === 201) {
-        jwttoken = response.body?.token
+      expect(adminResponse.status).toBe(201)
+      if (adminResponse.status === 201) {
+        jwttokenAdmin = adminResponse.body?.token
+      }
+
+      expect(userResponse.status === 201)
+      if (userResponse.status === 201) {
+        jwttokenUser = userResponse.body?.token
       }
     })
-  it("should return the jwt token",()=>{
-    expect(jwttoken).toBeDefined()
-  })
-    it('should pass post blog with admin account', async () => {
+    it("should return the jwt token", () => {
+      expect(jwttokenAdmin).toBeDefined()
+    })
+    it('should pass create blog with admin account', async () => {
       const createBlogRequeset: CreateBlogDTO = {
         owner: {
           name: "name",
@@ -145,14 +173,12 @@ describe('Blog E2E', () => {
         desc: "desc"
       }
 
-      console.log("jwt token", jwttoken)
-      const response = (jwttoken !== undefined && 
-      await request(httpServer).post('/blog').set('Authorization', 'Bearer ' + jwttoken).send(createBlogRequeset))
+      console.log("jwt token", jwttokenAdmin)
+      const response = (jwttokenAdmin !== undefined &&
+        await request(httpServer).post('/blog').set('Authorization', 'Bearer ' + jwttokenAdmin).send(createBlogRequeset))
       console.log(response)
       expect(response.status).toBe(201)
     })
-  })
-
     it('should fail unauthorized create blog requests', async () => {
 
       const createBlogRequeset: CreateBlogDTO = {
@@ -173,6 +199,57 @@ describe('Blog E2E', () => {
       // console.log(response)
       expect(response.status).toBe(401)
     })
+    it("should reject not admin accounts when create a blog", async () => {
+      const createBlogRequeset: CreateBlogDTO = {
+        owner: {
+          name: "name",
+          address: "address",
+          photo: "photo",
+          accounts: "accounts",
+          password: "password",
+          isAdmin: false
+        },
+        title: "title",
+        photo: "photo",
+        desc: "desc"
+      }
 
+      console.log("jwt token", jwttokenUser)
+      const response = (jwttokenUser !== undefined &&
+        await request(httpServer).post('/blog').set('Authorization', 'Bearer ' + jwttokenUser).send(createBlogRequeset))
+      console.log(response)
+      expect(response.status).toBe(401)
+    })
+    it('should pass update blog with admin account', async () => {
+      const updateBlogRequeset: UpdateBlogDTO = {
+        owner: {
+          name: "name",
+          address: "address",
+          photo: "photo",
+          accounts: "accounts",
+          password: "password",
+          isAdmin: true
+        },
+        title: "title updated",
+        photo: "photo updated",
+        desc: "desc updated"
+      }
+
+
+      await fetch("http://localhost:3000/blog/637f8e1de075ac6cd7823c2d").then(async (res) => {
+        expect(res.status).toBe(200)
+        if (res.status === 200) {
+          const response = (jwttokenAdmin !== undefined &&
+            await request(httpServer).put('/blog/637f8e1de075ac6cd7823c2d').set('Authorization', 'Bearer ' + jwttokenAdmin).send(updateBlogRequeset))
+          console.log(response)
+          expect(response.status).toBe(200)
+          expect(response.body)
+        }
+      })
+      // console.log("jwt token", jwttokenAdmin)
+
+    })
+
+  })
 
 })
