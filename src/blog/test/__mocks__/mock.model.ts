@@ -24,6 +24,10 @@ export abstract class MockBlogModel<T>{
     async save():Promise<T>{
         return this.blogStub
     }
+
+    async findByIdAndDelete():Promise<{}>{
+        return {}
+    }
     // async findByIdAndDelete():Promise<{message:string}>{
     //     return {message}
     // }
