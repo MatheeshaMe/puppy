@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ReviewService } from './review.service';
 import { CreateReviewDTO, UpdateReviewDTO } from './dto/review.dto';
-import { UserDec } from 'src/utilities/user.decorator';
+import { UserDec } from '../utilities/user.decorator';
 import { User } from '../user/schema/user.schema';
 import { AuthGuard } from '@nestjs/passport';
 
