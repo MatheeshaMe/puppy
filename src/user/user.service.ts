@@ -15,19 +15,19 @@ export class UserService {
     @InjectModel(SchemaNames.USER) private userModel: Model<UserDocument>,
   ) {}
 
-  async register(createUserDto: CreateUserDto): Promise<User | string | any> {
+  async register(createUserDto: CreateUserDto): Promise<any> {
     try {
       const { name, address, photo, accounts, password, isAdmin } =
         createUserDto;
 
-      const user = await this.userModel.findOne({ name: name });
+      const user = await this.userModel.findOne({ name: name }) as User
       if (user) {
         throw new HttpException(
           'user already exist',
           HttpStatus.NOT_ACCEPTABLE,
         );
       }
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const hashedPassword = await bcrypt.hash(password, 10) as string
       console.log(hashedPassword);
       const newUser = new this.userModel({
         name,
@@ -99,7 +99,7 @@ export class UserService {
         photo,
         accounts,
       };
-      const newUser = await this.userModel.find(filter, update, {
+      const newUser = await this.userModel.findByIdAndUpdate(filter, update, {
         returnNewDocument: true,
       });
       return newUser;
