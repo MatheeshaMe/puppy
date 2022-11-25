@@ -8,7 +8,7 @@ import { CreateBlogDTO, UpdateBlogDTO } from '../src/blog/dto/blog.dto';
 import { userStub } from '../src/blog/test/stubs/user.stub';
 import { CreateUserDto } from '../src/user/dto/create-user.dto';
 import { LoginUserDTO } from '../src/user/dto/loginUser.dto';
-import * as axios from "axios"
+import axios from "axios"
 describe('Blog E2E', () => {
 
   let app: INestApplication;
@@ -36,7 +36,7 @@ describe('Blog E2E', () => {
 
   });
   beforeEach(async () => {
-    console.log("before each block")
+    // console.log("before each block")
     // await dbConnection.collection('blogs').deleteMany({});
     // await dbConnection.collection('users').deleteMany({});
 
@@ -72,7 +72,7 @@ describe('Blog E2E', () => {
       // console.log(response)
       expect(response.status).toBe(201)
       expect(response.body).toBeDefined()
-      console.log(response.body)
+      // console.log(response.body)
     })
     test('If username already exist', async () => {
       const createUserRequest: CreateUserDto = {
@@ -176,7 +176,7 @@ describe('Blog E2E', () => {
       console.log("jwt token", jwttokenAdmin)
       const response = (jwttokenAdmin !== undefined &&
         await request(httpServer).post('/blog').set('Authorization', 'Bearer ' + jwttokenAdmin).send(createBlogRequeset))
-      console.log(response)
+      // console.log(response)
       expect(response.status).toBe(201)
     })
     it('should fail unauthorized create blog requests', async () => {
@@ -217,7 +217,7 @@ describe('Blog E2E', () => {
       console.log("jwt token", jwttokenUser)
       const response = (jwttokenUser !== undefined &&
         await request(httpServer).post('/blog').set('Authorization', 'Bearer ' + jwttokenUser).send(createBlogRequeset))
-      console.log(response)
+      // console.log(response)
       expect(response.status).toBe(401)
     })
     it('should pass update blog with admin account', async () => {
@@ -247,9 +247,61 @@ describe('Blog E2E', () => {
         }
       })
       // console.log("jwt token", jwttokenAdmin)
-
     })
+    it("should fail user try to update a blog",async()=>{
 
+
+      const getPost = async(_id)=>{
+        try {
+          const data = await axios.get(`http://localhost:3000/blog/${_id}`)
+          if(!data){
+            throw new Error(`there is no post ${_id}`)
+          }
+          console.log("line 294 data",data?.data)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
+      const updateBlogRequeset: UpdateBlogDTO = {
+        owner: {
+          name: "name",
+          address: "address",
+          photo: "photo",
+          accounts: "accounts",
+          password: "password",
+          isAdmin: true
+        },
+        title: "title updated",
+        photo: "photo updated",
+        desc: "desc updated"
+      }
+
+      await fetch("http://localhost:3000/blog/637f8e1de075ac6cd7823c2d").then(async (res) => {
+        expect(res.status).toBe(200)
+        if (res.status === 200) {
+          const response = (jwttokenAdmin !== undefined &&
+            await request(httpServer).put('/blog/637f8e1de075ac6cd7823c2d').set('Authorization', 'Bearer ' + jwttokenUser).send(updateBlogRequeset))
+          // console.log(response)
+          expect(response.status).toBe(401)
+          expect(response.body)
+        }
+      })
+    })
+    // it("should pass if admin tries to delete blog",async()=>{
+    //   await fetch("http://localhost:3000/blog/637f8e1de075ac6cd7823c2d").then(async (res) => {
+    //     expect(res.status).toBe(200)
+    //     if (res.status === 200) {
+    //       const response = (jwttokenAdmin !== undefined &&
+    //         await request(httpServer).delete('/blog/637f8e1de075ac6cd7823c2d').set('Authorization', 'Bearer ' + jwttokenAdmin))
+    //       console.log(response)
+    //       expect(response.status).toBe(200)
+    //       expect(response.body)
+    //     }
+
+    //     // if(res.status ===40)
+    //   })
+    // })
+  
   })
-
 })
